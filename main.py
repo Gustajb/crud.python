@@ -60,5 +60,19 @@ lista_usuarios = session.query(Usuario).all()
 for usuario in lista_usuarios:
    print(f"{usuario.id} - {usuario.nome} - {usuario.email} - {usuario.senha}")
 
+# Update.
+print("\nAtualizando dados do usuário.")
+usuario = session.query(Usuario).filter_by(email = email_usuario).first()
+
+novos_dados = Usuario(
+    inserir_nome = input("Digite seu nome: "),
+    inserir_email = input("Digite seu e-mail: "),
+    inserir_senha = input("Digite sua senha: ")
+)
+
+usuario = novos_dados
+session.add(usuario)
+session.commit()
+
 # Fechando conexão.
 session.close()
